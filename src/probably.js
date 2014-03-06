@@ -203,3 +203,22 @@ probably.makeNormPDF = function(mean, sd) {
     return (numer / denom);
   };
 };
+
+/**
+ * Returns a random value from the domain of the given function using the
+ * rejection sampling algorithm.
+ *
+ * @param {function(number):number} f Function from which to sample
+ * @param {number} xMin Lower bound of the domain to search
+ * @param {number} xMax Upper bound of the domain to search
+ * @param {number} yMax Maximum value of the range to search
+ * @return {number}
+ */
+probably.rejectionSample = function(f, xMin, xMax, yMax) {
+  while (true) {
+    var x = probably.randRange(xMin, xMax);
+    var y = probably.randRange(0, yMax);
+    if (y < f(x))
+      return x;
+  }
+};

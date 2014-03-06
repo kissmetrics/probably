@@ -162,3 +162,17 @@ describe('makeNormPDF', function() {
     expect(pdf(10)).toBeCloseTo(0.00102819, 5);
   });
 });
+
+describe('rejectionSample', function() {
+  var samples = [];
+  beforeEach(function() {
+    pdf = probably.makeNormPDF(5, 2);
+    for (var i = 0; i < 1000; i++)
+      samples.push(probably.rejectionSample(pdf, 0, 10, 0.2));
+  });
+
+  it('should sample values from the given distribution', function() {
+    expect(probably.mean(samples)).toBeCloseTo(5, 0);
+    expect(probably.sd(samples)).toBeCloseTo(2, 0);
+  });
+});

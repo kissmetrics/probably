@@ -66,3 +66,13 @@ probably.variance = function(seq) {
 
   return (total / length);
 };
+
+/**
+ * Returns the standard deviation of the given values.
+ *
+ * @param {Array.<number>} xs
+ * @return {number}
+ */
+probably.sd = function(xs) {
+  return Math.sqrt(probably.variance(xs));
+};

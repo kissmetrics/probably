@@ -49,3 +49,13 @@ describe('variance', function() {
     expect(isNaN(probably.variance([]))).toBe(true);
   });
 });
+
+describe('sd', function() {
+  it('should return the standard deviation of the given values', function() {
+    expect(probably.sd([4, 5, 5, 4, 4, 2, 2, 6])).toEqual(Math.sqrt(1.75));
+  });
+
+  it('should return NaN when given an empty array of values', function() {
+    expect(isNaN(probably.sd([]))).toBe(true);
+  });
+});

@@ -39,3 +39,13 @@ describe('mean', function() {
     expect(isNaN(probably.mean([]))).toBe(true);
   });
 });
+
+describe('variance', function() {
+  it('should return the variance of the given sequence', function() {
+    expect(probably.variance([10, 20, 50, 100])).toEqual(1225);
+  });
+
+  it('should return NaN when given an empty sequence', function() {
+    expect(isNaN(probably.variance([]))).toBe(true);
+  });
+});

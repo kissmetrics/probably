@@ -45,3 +45,24 @@ probably.mean = function(seq) {
   var length = seq.length;
   return (length > 0) ? (probably.sum(seq) / length) : Number.NaN;
 };
+
+/**
+ * Calculates the variance of the given sequence.
+ *
+ * @param {Array.<number>} seq
+ * @return {number}
+ */
+probably.variance = function(seq) {
+  var length = seq.length;
+  if (length == 0)
+    return Number.NaN;
+
+  var mean = probably.mean(seq);
+  var total = 0;
+  for (var i = 0; i < length; i++) {
+    var diff = (seq[i] - mean);
+    total += (diff * diff);
+  }
+
+  return (total / length);
+};

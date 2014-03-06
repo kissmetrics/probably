@@ -125,3 +125,19 @@ describe('sdBeta', function() {
     expect(probably.sdBeta(10, 23)).toBeCloseTo(0.07881529757, 10);
   });
 });
+
+describe('makeBetaPDF', function() {
+  var pdf;
+  beforeEach(function() {
+    pdf = probably.makeBetaPDF(10, 23);
+  });
+
+  it('should return a PDF for the specified Beta distribution', function() {
+    expect(pdf(0)).toEqual(0);
+    expect(pdf(0.1)).toBeCloseTo(0.0635298, 5);
+    expect(pdf(0.25)).toBeCloseTo(4.38985, 5);
+    expect(pdf(0.5)).toBeCloseTo(0.300409, 5);
+    expect(pdf(0.75)).toBeCloseTo(2.7534277373744698e-6, 5);
+    expect(pdf(1)).toEqual(0);
+  });
+});

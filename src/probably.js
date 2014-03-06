@@ -169,3 +169,19 @@ probably.sdBeta = function(a, b) {
   var mean = probably.meanBeta(a, b);
   return Math.sqrt((mean * (1 - mean)) / (a + b + 1));
 };
+
+/**
+ * Returns a probably density function for the Beta distribution with the
+ * specified parameters.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {function(number):number}
+ */
+probably.makeBetaPDF = function(a, b) {
+  var denom = probably.beta(a, b);
+  return function(x) {
+    var numer = (Math.pow(x, (a - 1)) * Math.pow((1 - x), (b - 1)));
+    return (numer / denom);
+  };
+};

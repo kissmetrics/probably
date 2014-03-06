@@ -47,6 +47,24 @@ probably.mean = function(xs) {
 };
 
 /**
+ * Returns the median of the given values.
+ *
+ * @param {Array.<number>} xs
+ * @return {number}
+ */
+probably.median = function(xs) {
+  var length = xs.length;
+  if (length == 0)
+    return Number.NaN;
+
+  var middle = ((length / 2) - 1);
+  if ((middle % 1) == 0)
+    return ((xs[middle] + xs[middle + 1]) / 2);
+  else
+    return xs[Math.ceil(middle)];
+};
+
+/**
  * Calculates the variance of the given values.
  *
  * @param {Array.<number>} xs

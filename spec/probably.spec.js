@@ -40,6 +40,20 @@ describe('mean', function() {
   });
 });
 
+describe('median', function() {
+  it('should return the middle value when the length is odd', function() {
+    expect(probably.median([1, 2, 3, 4, 5])).toEqual(3);
+  });
+
+  it('should return the mean of the middle values when the length is even', function() {
+    expect(probably.median([1, 2, 3, 4, 5, 6])).toEqual(3.5);
+  });
+
+  it('should return NaN when given an empty array', function() {
+    expect(isNaN(probably.median([]))).toBe(true);
+  });
+});
+
 describe('variance', function() {
   it('should return the variance of the given values', function() {
     expect(probably.variance([10, 20, 50, 100])).toEqual(1225);

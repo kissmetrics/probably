@@ -37,6 +37,20 @@ probably.min = function(xs) {
 };
 
 /**
+ * Returns the maximum value from the given array.
+ *
+ * @param {number} xs
+ * @return {number}
+ */
+probably.max = function(xs) {
+  var max = null
+  for (var i = 0; i < xs.length; i++)
+    if (max === null || xs[i] > max)
+      max = xs[i];
+  return (max != null) ? max : Number.NaN;
+};
+
+/**
  * Returns the sum of the given values.
  *
  * @param {Array.<number>} xs

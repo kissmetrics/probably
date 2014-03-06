@@ -30,6 +30,16 @@ describe('min', function() {
   });
 });
 
+describe('max', function() {
+  it('should return the maximum value from the given values', function() {
+    expect(probably.max([5, 4, 2, 9, 3, 1])).toEqual(9);
+  });
+
+  it('should return NaN when given an empty array of values', function() {
+    expect(isNaN(probably.max([]))).toBe(true);
+  });
+});
+
 describe('sum', function() {
   it('should return the sum of the given values', function() {
     expect(probably.sum([1, 2, 3, 4])).toEqual(10);

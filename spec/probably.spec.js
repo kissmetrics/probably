@@ -113,3 +113,9 @@ describe('beta', function() {
     expect(probably.beta(10, 23)).toBeCloseTo(1.5500934396325411e-9, 20);
   });
 });
+
+describe('meanBeta', function() {
+  it('should return the mean of the Beta distribution', function() {
+    expect(probably.meanBeta(10, 23)).toEqual(10 / 33);
+  });
+});

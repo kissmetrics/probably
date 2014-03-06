@@ -146,3 +146,14 @@ probably.beta = function(a, b) {
   }
   return total;
 };
+
+/**
+ * Returns the mean of the Beta distribution with the specified parameters.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+probably.meanBeta = function(a, b) {
+  return (a / (a + b));
+};

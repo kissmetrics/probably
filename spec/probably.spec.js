@@ -107,3 +107,9 @@ describe('randRange', function() {
       expect(values[i] >= 5 && values[i] <= 10).toBe(true);
   });
 });
+
+describe('beta', function() {
+  it('should calculate the beta function for integer arguments', function() {
+    expect(probably.beta(10, 23)).toBeCloseTo(1.5500934396325411e-9, 20);
+  });
+});

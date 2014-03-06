@@ -129,3 +129,20 @@ probably.sd = function(xs) {
 probably.randRange = function(min, max) {
   return ((Math.random() * (max - min)) + min);
 };
+
+/**
+ * Calculates the Euler beta function for the given integer parameters.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+probably.beta = function(a, b) {
+  var total = 1;
+  for (var i = 0; i < a; i++) {
+    var n = (i > 0) ? i : 1;
+    var d = (b + i);
+    total *= (n / d);
+  }
+  return total;
+};

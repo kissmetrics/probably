@@ -157,3 +157,15 @@ probably.beta = function(a, b) {
 probably.meanBeta = function(a, b) {
   return (a / (a + b));
 };
+
+/**
+ * Returns the standard deviation of the Beta distribution.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+probably.sdBeta = function(a, b) {
+  var mean = probably.meanBeta(a, b);
+  return Math.sqrt((mean * (1 - mean)) / (a + b + 1));
+};

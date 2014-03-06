@@ -119,3 +119,9 @@ describe('meanBeta', function() {
     expect(probably.meanBeta(10, 23)).toEqual(10 / 33);
   });
 });
+
+describe('sdBeta', function() {
+  it('should return the standard deviation of the Beta distribution', function() {
+    expect(probably.sdBeta(10, 23)).toBeCloseTo(0.07881529757, 10);
+  });
+});

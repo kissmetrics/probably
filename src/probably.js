@@ -23,44 +23,44 @@ probably.range = function(start, stop, step) {
 };
 
 /**
- * Returns the sum of the given sequence.
+ * Returns the sum of the given values.
  *
- * @param {Array.<number>} seq
+ * @param {Array.<number>} xs
  * @return {number}
  */
-probably.sum = function(seq) {
+probably.sum = function(xs) {
   var total = 0;
-  for (var i = 0; i < seq.length; i++)
-    total += seq[i];
+  for (var i = 0; i < xs.length; i++)
+    total += xs[i];
   return total;
 };
 
 /**
- * Calculates the arithmetic mean of the given sequence.
+ * Calculates the arithmetic mean of the given values.
  *
- * @param {Array.<number>} seq
+ * @param {Array.<number>} xs
  * @return {number}
  */
-probably.mean = function(seq) {
-  var length = seq.length;
-  return (length > 0) ? (probably.sum(seq) / length) : Number.NaN;
+probably.mean = function(xs) {
+  var length = xs.length;
+  return (length > 0) ? (probably.sum(xs) / length) : Number.NaN;
 };
 
 /**
- * Calculates the variance of the given sequence.
+ * Calculates the variance of the given values.
  *
- * @param {Array.<number>} seq
+ * @param {Array.<number>} xs
  * @return {number}
  */
-probably.variance = function(seq) {
-  var length = seq.length;
+probably.variance = function(xs) {
+  var length = xs.length;
   if (length == 0)
     return Number.NaN;
 
-  var mean = probably.mean(seq);
+  var mean = probably.mean(xs);
   var total = 0;
   for (var i = 0; i < length; i++) {
-    var diff = (seq[i] - mean);
+    var diff = (xs[i] - mean);
     total += (diff * diff);
   }
 

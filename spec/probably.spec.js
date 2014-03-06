@@ -21,31 +21,31 @@ describe('range', function() {
 });
 
 describe('sum', function() {
-  it('should return the sum of a given sequence', function() {
+  it('should return the sum of the given values', function() {
     expect(probably.sum([1, 2, 3, 4])).toEqual(10);
   });
 
-  it('should return 0 for an empty sequence', function() {
+  it('should return 0 for an empty array of values', function() {
     expect(probably.sum([])).toEqual(0)
   });
 });
 
 describe('mean', function() {
-  it('should return the mean of the given sequence', function() {
+  it('should return the mean of the given values', function() {
     expect(probably.mean([5, 10, 15, 20, 25, 30])).toEqual(17.5);
   });
 
-  it('should return NaN when given an empty sequence', function() {
+  it('should return NaN when given an empty array of values', function() {
     expect(isNaN(probably.mean([]))).toBe(true);
   });
 });
 
 describe('variance', function() {
-  it('should return the variance of the given sequence', function() {
+  it('should return the variance of the given values', function() {
     expect(probably.variance([10, 20, 50, 100])).toEqual(1225);
   });
 
-  it('should return NaN when given an empty sequence', function() {
+  it('should return NaN when given an empty array of values', function() {
     expect(isNaN(probably.variance([]))).toBe(true);
   });
 });

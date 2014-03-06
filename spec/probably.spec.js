@@ -163,6 +163,26 @@ describe('makeNormPDF', function() {
   });
 });
 
+describe('makeBetaOrNormPDF', function() {
+  it('should return a Beta PDF for a + b < 1000', function() {
+    var pdf = jasmine.createSpy();
+    spyOn(probably, 'makeBetaPDF').and.returnValue(pdf);
+    expect(probably.makeBetaOrNormPDF(10, 23)).toBe(pdf);
+    expect(probably.makeBetaPDF.calls.count()).toEqual(1);
+    expect(probably.makeBetaPDF).toHaveBeenCalledWith(10, 23);
+  });
+
+  it('should return a normal PDF for a + b >= 1000', function() {
+    var pdf = jasmine.createSpy();
+    spyOn(probably, 'makeNormPDF').and.returnValue(pdf);
+    expect(probably.makeBetaOrNormPDF(1500, 320)).toBe(pdf);
+    expect(probably.makeNormPDF.calls.count()).toEqual(1);
+    expect(probably.makeNormPDF)
+      .toHaveBeenCalledWith(probably.meanBeta(1500, 320),
+                            probably.sdBeta(1500, 320));
+  });
+});
+
 describe('rejectionSample', function() {
   var samples = [];
   beforeEach(function() {

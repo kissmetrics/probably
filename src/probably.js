@@ -205,6 +205,20 @@ probably.makeNormPDF = function(mean, sd) {
 };
 
 /**
+ * Returns either the Beta distribution, or its normal approximation if `a +
+ * b` meet or exceed a threshold of 1000.
+ */
+probably.makeBetaOrNormPDF = function(a, b) {
+  if ((a + b) < 1000)
+    return probably.makeBetaPDF(a, b);
+  else {
+    var mean = probably.meanBeta(a, b);
+    var sd = probably.sdBeta(a, b);
+    return probably.makeNormPDF(mean, sd);
+  }
+};
+
+/**
  * Returns a random value from the domain of the given function using the
  * rejection sampling algorithm.
  *

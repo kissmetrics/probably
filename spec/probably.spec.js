@@ -29,3 +29,13 @@ describe('sum', function() {
     expect(probably.sum([])).toEqual(0)
   });
 });
+
+describe('mean', function() {
+  it('should return the mean of the given sequence', function() {
+    expect(probably.mean([5, 10, 15, 20, 25, 30])).toEqual(17.5);
+  });
+
+  it('should return NaN when given an empty sequence', function() {
+    expect(isNaN(probably.mean([]))).toBe(true);
+  });
+});

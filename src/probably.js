@@ -34,3 +34,14 @@ probably.sum = function(seq) {
     total += seq[i];
   return total;
 };
+
+/**
+ * Calculates the arithmetic mean of the given sequence.
+ *
+ * @param {Array.<number>} seq
+ * @return {number}
+ */
+probably.mean = function(seq) {
+  var length = seq.length;
+  return (length > 0) ? (probably.sum(seq) / length) : Number.NaN;
+};

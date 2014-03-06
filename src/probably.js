@@ -1,6 +1,28 @@
 var probably = {};
 
 /**
+ * Returns a sequence of consecutive integers.
+ *
+ * @param {number} start Minimum value in the sequence
+ * @param {number} stop Maximum value in the sequence, which is included in
+ *                      the sequence
+ * @param {number=} step Optional difference between each consecutive value,
+ *                       defaulting to 1
+ */
+probably.range = function(start, stop, step) {
+  step = step || 1;
+  var seq = [];
+  if (step > 0) {
+    for (var i = start; i <= stop; i += step)
+      seq.push(i);
+  } else if (step < 0) {
+    for (var i = start; i >= stop; i += step)
+      seq.push(i);
+  }
+  return seq;
+};
+
+/**
  * Returns the sum of the given sequence.
  *
  * @param {Array.<number>} seq

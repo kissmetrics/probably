@@ -20,6 +20,16 @@ describe('range', function() {
   });
 });
 
+describe('min', function() {
+  it('should return the minimum value from the given values', function() {
+    expect(probably.min([5, 4, 2, 3, 1, 9])).toEqual(1);
+  });
+
+  it('should return NaN when given an empty array of values', function() {
+    expect(isNaN(probably.min([]))).toBe(true);
+  });
+});
+
 describe('sum', function() {
   it('should return the sum of the given values', function() {
     expect(probably.sum([1, 2, 3, 4])).toEqual(10);

@@ -23,6 +23,20 @@ probably.range = function(start, stop, step) {
 };
 
 /**
+ * Returns the minimum value from the given array.
+ *
+ * @param {number} xs
+ * @return {number}
+ */
+probably.min = function(xs) {
+  var min = null
+  for (var i = 0; i < xs.length; i++)
+    if (min === null || xs[i] < min)
+      min = xs[i];
+  return (min != null) ? min : Number.NaN;
+};
+
+/**
  * Returns the sum of the given values.
  *
  * @param {Array.<number>} xs

@@ -40,6 +40,20 @@ describe('max', function() {
   });
 });
 
+describe('collectn', function() {
+  var f;
+  beforeEach(function() {
+    var i = 1;
+    f = function() {
+      return (i *= 2);
+    };
+  });
+
+  it('should return an array of return values from the given function', function() {
+    expect(probably.collectn(8, f)).toEqual([2, 4, 8, 16, 32, 64, 128, 256]);
+  });
+});
+
 describe('sum', function() {
   it('should return the sum of the given values', function() {
     expect(probably.sum([1, 2, 3, 4])).toEqual(10);

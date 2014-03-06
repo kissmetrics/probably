@@ -51,6 +51,21 @@ probably.max = function(xs) {
 };
 
 /**
+ * Call the given function the specified number of times, and return an array
+ * of its return values.
+ *
+ * @param {number} n
+ * @param {function():number} f
+ * @return {Array.<number>}
+ */
+probably.collectn = function(n, f) {
+  var values = [];
+  for (var i = 0; i < n; i++)
+    values.push(f());
+  return values;
+};
+
+/**
  * Returns the sum of the given values.
  *
  * @param {Array.<number>} xs

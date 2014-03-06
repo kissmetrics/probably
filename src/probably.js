@@ -185,3 +185,21 @@ probably.makeBetaPDF = function(a, b) {
     return (numer / denom);
   };
 };
+
+/**
+ * Returns a probably distribution function for the specified normal
+ * distribution.
+ *
+ * @param {number} mean
+ * @param {number} sd
+ * @return {function(number):number}
+ */
+probably.makeNormPDF = function(mean, sd) {
+  var denom = (sd * Math.sqrt(2 * Math.PI));
+  var varianceTimesTwo = 2 * (sd * sd);
+  return function(x) {
+    var diff = (x - mean);
+    var numer = Math.exp(-(diff * diff) / varianceTimesTwo);
+    return (numer / denom);
+  };
+};

@@ -141,3 +141,24 @@ describe('makeBetaPDF', function() {
     expect(pdf(1)).toEqual(0);
   });
 });
+
+describe('makeNormPDF', function() {
+  var pdf;
+  beforeEach(function() {
+    pdf = probably.makeNormPDF(5, 1.5);
+  });
+
+  it('should return a PDF for the specified normal distribution', function() {
+    expect(pdf(0)).toBeCloseTo(0.00102819, 5);
+    expect(pdf(1)).toBeCloseTo(0.00759732, 5);
+    expect(pdf(2)).toBeCloseTo(0.035994, 5);
+    expect(pdf(3)).toBeCloseTo(0.10934, 5);
+    expect(pdf(4)).toBeCloseTo(0.212965, 5);
+    expect(pdf(5)).toBeCloseTo(0.265962, 5);
+    expect(pdf(6)).toBeCloseTo(0.212965, 5);
+    expect(pdf(7)).toBeCloseTo(0.10934, 5);
+    expect(pdf(8)).toBeCloseTo(0.035994, 5);
+    expect(pdf(9)).toBeCloseTo(0.00759732, 5);
+    expect(pdf(10)).toBeCloseTo(0.00102819, 5);
+  });
+});

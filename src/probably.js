@@ -122,3 +122,10 @@ probably.variance = function(xs) {
 probably.sd = function(xs) {
   return Math.sqrt(probably.variance(xs));
 };
+
+/**
+ * Returns a random number sampled uniformly from the given range.
+ */
+probably.randRange = function(min, max) {
+  return ((Math.random() * (max - min)) + min);
+};

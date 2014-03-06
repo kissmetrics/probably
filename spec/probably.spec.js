@@ -93,3 +93,17 @@ describe('sd', function() {
     expect(isNaN(probably.sd([]))).toBe(true);
   });
 });
+
+describe('randRange', function() {
+  var values;
+  beforeEach(function() {
+    values = [];
+    for (var i = 0; i < 100; i++)
+      values.push(probably.randRange(5, 10));
+  });
+
+  it('should return random numbers within the given range', function() {
+    for (var i = 0; i < values.length; i++)
+      expect(values[i] >= 5 && values[i] <= 10).toBe(true);
+  });
+});

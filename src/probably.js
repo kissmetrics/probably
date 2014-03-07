@@ -193,7 +193,7 @@ probably.sdBeta = function(a, b) {
  * @param {number} b
  * @return {function(number):number}
  */
-probably.betaPDF = function(a, b) {
+probably._betaPDF = function(a, b) {
   var denom = probably.beta(a, b);
   return function(x) {
     var numer = (Math.pow(x, (a - 1)) * Math.pow((1 - x), (b - 1)));
@@ -221,11 +221,15 @@ probably.normPDF = function(mean, sd) {
 
 /**
  * Returns either the Beta distribution, or its normal approximation if `a +
- * b` meet or exceed a threshold of 1000.
+ * b` meet or exceed a threshold.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {function(number):number}
  */
-probably.betaOrNormPDF = function(a, b) {
+probably.betaPDF = function(a, b) {
   if ((a + b) < 1000)
-    return probably.betaPDF(a, b);
+    return probably._betaPDF(a, b);
   else {
     var mean = probably.meanBeta(a, b);
     var sd = probably.sdBeta(a, b);

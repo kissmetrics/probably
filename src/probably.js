@@ -279,3 +279,39 @@ probably.betaSampler = function(a, b) {
     return probably.rejectionSample(pdf, xMin, xMax, yMax);
   };
 };
+
+/**
+ * Returns a summary of the improvement between two trials.
+ *
+ * @param {number} a1 Alpha for the first Beta distribution
+ * @param {number} b1 Beta for the first Beta distribution
+ * @param {number} a2 Alpha for the second Beta distribution
+ * @param {number} b2 Beta for the second Beta distribution
+ * @param {number=} sampleCount Number of samples to take; defaults to 100000
+ * @return {Object}
+ */
+probably.improvement = function(a1, b1, a2, b2, sampleCount) {
+  sampleCount = sampleCount || 100000;
+
+  var sampler1 = probably.betaSampler(a1, b1);
+  var samples1 = probably.collectn(sampleCount, sampler1);
+
+  var sampler2 = probably.betaSampler(a2, b2);
+  var samples2 = probably.collectn(sampleCount, sampler2);
+
+  var improvementCount = 0;
+  var diffs = [];
+  for (var i = 0; i < sampleCount; i++) {
+    var s1 = samples1[i], s2 = samples2[i];
+    if (s1 > s2)
+      improvementCount++;
+    var diff = ((s1 / s2) - 1);
+    diffs.push(diff);
+  }
+
+  return {
+    prob: (improvementCount / sampleCount),
+    mean: probably.mean(diffs),
+    sd: probably.sd(diffs)
+  };
+};

@@ -248,3 +248,28 @@ describe('betaSampler', function() {
     expect(args[3]).toEqual(0.5);  // yMin, specified above
   });
 });
+
+describe('improvement', function() {
+  var summary;
+  beforeEach(function() {
+    summary = probably.improvement(10, 23, 8, 34);
+  });
+
+  it('should provide an overall probability of improvement', function() {
+    expect(summary.prob).toBeCloseTo(0.87251, 1);
+  });
+
+  it('should calculate the mean improvement', function() {
+    expect(summary.mean).toBeCloseTo(0.7718442655217456, 1);
+  });
+
+  it('should calculate the SD of improvement', function() {
+    expect(summary.sd).toBeCloseTo(0.8237705640001249, 1);
+  });
+
+  it('should draw the specified number of samples', function() {
+    spyOn(probably, 'collectn').and.callThrough();
+    probably.improvement(10, 23, 8, 24, 20);
+    expect(probably.collectn.calls.mostRecent().args[0]).toEqual(20);
+  });
+});

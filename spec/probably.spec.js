@@ -140,10 +140,10 @@ describe('sdBeta', function() {
   });
 });
 
-describe('makeBetaPDF', function() {
+describe('betaPDF', function() {
   var pdf;
   beforeEach(function() {
-    pdf = probably.makeBetaPDF(10, 23);
+    pdf = probably.betaPDF(10, 23);
   });
 
   it('should return a PDF for the specified Beta distribution', function() {
@@ -156,10 +156,10 @@ describe('makeBetaPDF', function() {
   });
 });
 
-describe('makeNormPDF', function() {
+describe('normPDF', function() {
   var pdf;
   beforeEach(function() {
-    pdf = probably.makeNormPDF(5, 1.5);
+    pdf = probably.normPDF(5, 1.5);
   });
 
   it('should return a PDF for the specified normal distribution', function() {
@@ -177,30 +177,29 @@ describe('makeNormPDF', function() {
   });
 });
 
-describe('makeBetaOrNormPDF', function() {
+describe('betaOrNormPDF', function() {
   it('should return a Beta PDF for a + b < 1000', function() {
     var pdf = jasmine.createSpy();
-    spyOn(probably, 'makeBetaPDF').and.returnValue(pdf);
-    expect(probably.makeBetaOrNormPDF(10, 23)).toBe(pdf);
-    expect(probably.makeBetaPDF.calls.count()).toEqual(1);
-    expect(probably.makeBetaPDF).toHaveBeenCalledWith(10, 23);
+    spyOn(probably, 'betaPDF').and.returnValue(pdf);
+    expect(probably.betaOrNormPDF(10, 23)).toBe(pdf);
+    expect(probably.betaPDF.calls.count()).toEqual(1);
+    expect(probably.betaPDF).toHaveBeenCalledWith(10, 23);
   });
 
   it('should return a normal PDF for a + b >= 1000', function() {
     var pdf = jasmine.createSpy();
-    spyOn(probably, 'makeNormPDF').and.returnValue(pdf);
-    expect(probably.makeBetaOrNormPDF(1500, 320)).toBe(pdf);
-    expect(probably.makeNormPDF.calls.count()).toEqual(1);
-    expect(probably.makeNormPDF)
-      .toHaveBeenCalledWith(probably.meanBeta(1500, 320),
-                            probably.sdBeta(1500, 320));
+    spyOn(probably, 'normPDF').and.returnValue(pdf);
+    expect(probably.betaOrNormPDF(1500, 320)).toBe(pdf);
+    expect(probably.normPDF.calls.count()).toEqual(1);
+    expect(probably.normPDF).toHaveBeenCalledWith(probably.meanBeta(1500, 320),
+                                                  probably.sdBeta(1500, 320));
   });
 });
 
 describe('rejectionSample', function() {
   var samples = [];
   beforeEach(function() {
-    pdf = probably.makeNormPDF(5, 2);
+    pdf = probably.normPDF(5, 2);
     for (var i = 0; i < 1000; i++)
       samples.push(probably.rejectionSample(pdf, 0, 10, 0.2));
   });

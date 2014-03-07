@@ -193,7 +193,7 @@ probably.sdBeta = function(a, b) {
  * @param {number} b
  * @return {function(number):number}
  */
-probably.makeBetaPDF = function(a, b) {
+probably.betaPDF = function(a, b) {
   var denom = probably.beta(a, b);
   return function(x) {
     var numer = (Math.pow(x, (a - 1)) * Math.pow((1 - x), (b - 1)));
@@ -209,7 +209,7 @@ probably.makeBetaPDF = function(a, b) {
  * @param {number} sd
  * @return {function(number):number}
  */
-probably.makeNormPDF = function(mean, sd) {
+probably.normPDF = function(mean, sd) {
   var denom = (sd * Math.sqrt(2 * Math.PI));
   var varianceTimesTwo = 2 * (sd * sd);
   return function(x) {
@@ -223,13 +223,13 @@ probably.makeNormPDF = function(mean, sd) {
  * Returns either the Beta distribution, or its normal approximation if `a +
  * b` meet or exceed a threshold of 1000.
  */
-probably.makeBetaOrNormPDF = function(a, b) {
+probably.betaOrNormPDF = function(a, b) {
   if ((a + b) < 1000)
-    return probably.makeBetaPDF(a, b);
+    return probably.betaPDF(a, b);
   else {
     var mean = probably.meanBeta(a, b);
     var sd = probably.sdBeta(a, b);
-    return probably.makeNormPDF(mean, sd);
+    return probably.normPDF(mean, sd);
   }
 };
 

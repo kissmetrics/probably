@@ -251,7 +251,7 @@ probably.rejectionSample = function(f, xMin, xMax, yMax) {
   while (true) {
     var x = probably.randRange(xMin, xMax);
     var y = probably.randRange(0, yMax);
-    if (y < f(x))
+    if (y <= f(x))
       return x;
   }
 };

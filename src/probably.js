@@ -255,3 +255,27 @@ probably.rejectionSample = function(f, xMin, xMax, yMax) {
       return x;
   }
 };
+
+/**
+ * Returns a function to sample values from the specified Beta distribution.
+ *
+ * @param {number} n Number of samples to return
+ * @param {number} a
+ * @param {number} b
+ * @return {function():number}
+ */
+probably.betaSampler = function(a, b) {
+  var pdf = probably.betaPDF(a, b);
+
+  // Optimize sampling by constrain the sampling space to `x` within Z=8 of
+  // the mean, and `y` less than the distribution's maximum.
+  var distMean = probably.meanBeta(a, b);
+  var distSD = probably.sdBeta(a, b);
+  var xMin = Math.max((distMean - (8 * distSD)), 0);
+  var xMax = Math.min((distMean + (8 * distSD)), 1);
+  var yMax = pdf(distMean);
+
+  return function() {
+    return probably.rejectionSample(pdf, xMin, xMax, yMax);
+  };
+};

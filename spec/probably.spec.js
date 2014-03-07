@@ -209,3 +209,42 @@ describe('rejectionSample', function() {
     expect(probably.sd(samples)).toBeCloseTo(2, 0);
   });
 });
+
+describe('betaSampler', function() {
+  var sampler, sampledValue, pdf;
+  beforeEach(function() {
+    sampledValue = jasmine.createSpy();
+    spyOn(probably, 'rejectionSample').and.returnValue(sampledValue);
+    pdf = jasmine.createSpy().and.returnValue(0.5);
+    spyOn(probably, 'betaPDF').and.returnValue(pdf);
+    sampler = probably.betaSampler(10, 23);
+  });
+
+  it('should construct a Beta PDF witih the specified parameters', function() {
+    expect(probably.betaPDF.calls.count()).toEqual(1);
+    expect(probably.betaPDF).toHaveBeenCalledWith(10, 23);
+  });
+
+  it('should return a sampler function', function() {
+    expect(sampler instanceof Function).toBe(true);
+  });
+
+  it('should pick values using the rejection sampler', function() {
+    expect(sampler()).toBe(sampledValue);
+    expect(probably.rejectionSample.calls.count()).toEqual(1);
+  });
+
+  it('should pick values from the Beta PDF', function() {
+    sampler();
+    expect(probably.rejectionSample.calls.mostRecent().args[0]).toEqual(pdf);
+  });
+
+  it('should pick values from a limited range', function() {
+    sampler();
+    var args = probably.rejectionSample.calls.mostRecent().args;
+    expect(args[1]).toEqual(0);  // xMin
+    expect(args[2]).toBeCloseTo(0.9335526836202253);  // xMax
+    expect(pdf.calls.mostRecent().args[0]).toBeCloseTo(0.30303030303030304);
+    expect(args[3]).toEqual(0.5);  // yMin, specified above
+  });
+});

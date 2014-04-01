@@ -245,15 +245,22 @@ probably.betaPDF = function(a, b) {
  * @param {number} xMin Lower bound of the domain to search
  * @param {number} xMax Upper bound of the domain to search
  * @param {number} yMax Maximum value of the range to search
- * @return {number}
+ * @param {number=} maxIters Optional maximum number of times to attempt
+ *                           sampling (defaults to 10000)
+ * @return {?number} Sampled value or null if the iteration threshold was met
+ *                   before drawing a valid sample
  */
-probably.rejectionSample = function(f, xMin, xMax, yMax) {
-  while (true) {
+probably.rejectionSample = function(f, xMin, xMax, yMax, maxIters) {
+  maxIters = 10000;
+
+  for (var i = 0; i < maxIters; i++) {
     var x = probably.randRange(xMin, xMax);
     var y = probably.randRange(0, yMax);
     if (y <= f(x))
       return x;
   }
+
+  return null;
 };
 
 /**

@@ -208,6 +208,12 @@ describe('rejectionSample', function() {
     expect(probably.mean(samples)).toBeCloseTo(5, 0);
     expect(probably.sd(samples)).toBeCloseTo(2, 0);
   });
+
+  it('should return null if no sample could be found', function() {
+    var pdf = probably.betaPDF(0, 1);
+    var value = probably.rejectionSample(pdf, -20, -10);
+    expect(value).toBe(null);
+  });
 });
 
 describe('betaSampler', function() {

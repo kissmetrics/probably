@@ -5,5 +5,5 @@
   "dependencies"  : {
     "underscore"  : ">=1.5.0"
   },
-  "ignore"        : ["spec/*"]
+  "ignore"        : ["spec"]
 }

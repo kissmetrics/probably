@@ -279,3 +279,26 @@ describe('improvement', function() {
     expect(probably.collectn.calls.mostRecent().args[0]).toEqual(20);
   });
 });
+
+describe('integrate', function() {
+  var f;
+  beforeEach(function() {
+    f = jasmine.createSpy().and.callFake(function(x) { return (x * x); });
+  });
+
+  it('should approximate the specified integral', function() {
+    expect(probably.integrate(0, 10, f, 0.0001)).toBeCloseTo(1000 / 3, 1);
+    expect(probably.integrate(-10, 10, f, 0.0001)).toBeCloseTo(2000 / 3, 1);
+  });
+
+  it('should call the function for each point according to dx', function() {
+    probably.integrate(0, 10, f, 1);
+    expect(f.calls.count()).toEqual(11);
+    for (var i = 0; i <= 10; i++)
+      expect(f).toHaveBeenCalledWith(i);
+  });
+
+  it('should return 0 if bounds are reversed', function() {
+    expect(probably.integrate(1, -1, f, 0.00001)).toEqual(0);
+  });
+});

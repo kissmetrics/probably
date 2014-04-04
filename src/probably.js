@@ -315,3 +315,19 @@ probably.improvement = function(a1, b1, a2, b2, sampleCount) {
     sd: probably.sd(diffs)
   };
 };
+
+/**
+ * Calculates a numerical approximation to the specified definite integral.
+ *
+ * @param {number} start Lower bound for the range of integration
+ * @param {number} stop Upper bound for the range of integration
+ * @param {function(number):number} Function to integrate
+ * @param {dx} Step increment
+ * @return {number}
+ */
+probably.integrate = function(start, stop, f, dx) {
+  var total = 0;
+  for (var i = start; i <= stop; i += dx)
+    total += f(i);
+  return (total * dx);
+};

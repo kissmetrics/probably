@@ -1,0 +1,19 @@
+{
+  "name": "probably",
+  "version": "1.0.0",
+  "description": "A library of statistical methods in JavaScript",
+  "main": "src/probably.js",
+  "scripts": {
+    "test": "echo \"Error: please run tests manually in the browser\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kissmetrics/probably.git"
+  },
+  "author": "KISSmetrics",
+  "license": "KISSmetrics",
+  "bugs": {
+    "url": "https://github.com/kissmetrics/probably/issues"
+  },
+  "homepage": "https://github.com/kissmetrics/probably"
+}
